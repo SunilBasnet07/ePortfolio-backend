@@ -28,6 +28,7 @@ const register = async (data) => {
   return await User.create({ 
     name:data.name,
     email:data.email,
+    number:data.number,
     password: hashedPassword ,
     confirmPassword:hashedPassword
   });

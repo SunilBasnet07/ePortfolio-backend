@@ -22,10 +22,11 @@ const login = async (req, res) => {
 
 }
 const register = async (req, res) => {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword,number } = req.body;
     try {
         if (!email && !password && !name && !phone) return res.status(428).send("All input fields is required.")
         if (!email) return res.status(428).send("Email is required.")
+        if (!number) return res.status(428).send("Number is required.")
         if (!password) return res.status(428).send("Password is required.")
         if (!name) return res.status(428).send("Name is required.")
         if (!confirmPassword) return res.status(428).send("ConfirmPassword is required.")
