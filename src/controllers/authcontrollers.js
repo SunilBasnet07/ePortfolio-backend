@@ -35,8 +35,9 @@ const register = async (req, res) => {
         const user = await authServices.register(req.body);
 
         const formatterData = formatterUserData(user);
-
-        res.json(formatterData);
+        const token = createToken(formatterData);
+        res.cookie("authToken", token);
+       res.json({...formatterData,token});
     } catch (error) {
         res.status(500).send(error.message);
     }

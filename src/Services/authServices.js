@@ -25,7 +25,12 @@ const register = async (data) => {
     }
   }
   const hashedPassword = bcrypt.hashSync(data.password, 10);
-  return await User.create({ ...data, password: hashedPassword });
+  return await User.create({ 
+    name:data.name,
+    email:data.email,
+    password: hashedPassword ,
+    confirmPassword:hashedPassword
+  });
 }
 
 
