@@ -23,17 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extends: false }));
 app.use(logger)
 app.use(cors())
-// const allowedOrigins = ['http://localhost:3000'];
-// app.use(cors({
-//     origin: function (origin, callback) {
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error('Not allowed by CORS'));
-//       }
-//     },
-//     credentials: true // if you're using cookies
-//   }));
+
 
 
 
