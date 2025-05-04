@@ -15,7 +15,7 @@ const login = async (req, res) => {
         res.cookie("authToken", token);
 
 
-        res.json(formatterData);
+        res.json({...formatterData,token});
     } catch (error) {
         res.status(500).send(error.message);
     }
