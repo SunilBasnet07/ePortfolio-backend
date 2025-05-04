@@ -20,9 +20,12 @@ const app = express();
 const port = process.env.PORT;
 const upload = multer()
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extends:false}));
+app.use(bodyParser.urlencoded({ extends: false }));
 app.use(logger)
-app.use(cors())
+app.use(cors({
+    origin: 'https://e-portfolio-backend.vercel.app',
+    optionsSuccessStatus: 200
+}))
 
 
 
@@ -33,15 +36,15 @@ app.get('/', (req, res) => {
         "version": "1.0.0",
         "author": "Sunil basnet",
         "license": "ISC",
-        "port":port,
+        "port": port,
     })
 })
 
-app.use("/api/users",userRoute);
-app.use("/api/profile/upload",upload.single("image"),userRoute);
-app.use("/api/auth",authRoute);
-app.use("/api/project",upload.single("image"), projectRoute);
-app.use("/api/contact",contactRoute);
+app.use("/api/users", userRoute);
+app.use("/api/profile/upload", upload.single("image"), userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/project", upload.single("image"), projectRoute);
+app.use("/api/contact", contactRoute);
 
 app.listen(port, () => {
     console.log(`Surver is running at port ${port}...`);
