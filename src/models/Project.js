@@ -3,25 +3,25 @@ import mongoose from "mongoose";
 const projectSchema= new mongoose.Schema({
     title: {
         type: String,
-        required: [true, 'Project title is required'],
+        required: true,
         trim: true,
-        minlength: [3, 'Title must be at least 3 characters long'],
-        maxlength: [100, 'Title cannot exceed 100 characters'],
+        minlength: 3,
+        maxlength:100,
       },
       description: {
         type: String,
-        required: [true, 'Project description is required'],
-        minlength: [10, 'Description must be at least 10 characters'],
+        required: true,
+        minlength: 10,
       },
       techStack: {
-        type: [String],
-        required: [true, 'Tech stack is required'],
-        validate: {
-          validator: function (arr) {
-            return arr.length > 0;
-          },
-          message: 'At least one technology is required in tech stack',
-        },
+        type: String,
+        required: true,
+        // validate: {
+        //   validator: function (arr) {
+        //     return arr.length > 0;
+        //   },
+        //   message: 'At least one technology is required in tech stack',
+        // },
       },
       imageUrl: {
         type: String,
