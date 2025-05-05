@@ -3,7 +3,7 @@ import { verifyToken } from "../utils/jwt.js";
 const auth = async (req, res, next) => {
     const authHeader = req.headers.authorization;
     let authToken;
-    if (authHeader && authHeader.startWith("Bearer ")) {
+    if (authHeader && authHeader.startsWith("Bearer ")) {
         authToken = authHeader.split(" ")[1];
     } else {
         const cookie = req.headers.cookie;
