@@ -2,7 +2,9 @@ import User from "../models/User.js"
 import bcrypt from "bcrypt";
 
 const login = async (data) => {
-  const user = await User.findOne({ email: data.email }); 
+  const user = await User.findOne({
+    $or:[{ email: data.email },{number:data.number}]
+  }); 
   const isPasswordMatched = bcrypt.compareSync(data.password, user.password);
   if (!isPasswordMatched) {
     throw {

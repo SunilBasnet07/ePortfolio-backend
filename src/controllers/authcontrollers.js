@@ -13,16 +13,14 @@ const login = async (req, res) => {
         const formatterData = formatterUserData(user);
         const token = createToken(formatterData);
         res.cookie("authToken", token);
-
-
-        res.json({...formatterData,token});
+        res.json({ ...formatterData, token });
     } catch (error) {
         res.status(500).send(error.message);
     }
 
 }
 const register = async (req, res) => {
-    const { name, email, password, confirmPassword,number } = req.body;
+    const { name, email, password, confirmPassword, number } = req.body;
     try {
         if (!email && !password && !name && !phone) return res.status(428).send("All input fields is required.")
         if (!email) return res.status(428).send("Email is required.")
@@ -38,7 +36,7 @@ const register = async (req, res) => {
         const formatterData = formatterUserData(user);
         const token = createToken(formatterData);
         res.cookie("authToken", token);
-       res.json({...formatterData,token});
+        res.json({ ...formatterData, token });
     } catch (error) {
         res.status(500).send(error.message);
     }
