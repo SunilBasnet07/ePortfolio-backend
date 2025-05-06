@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/',auth,createProject);
 router.put('/:id',auth,updateProject);
 router.delete('/:id',auth,deleteProject);
-router.get('/:id',auth,getProjectById);
+router.get('/:id',getProjectById);
 router.get('/',auth,getProjectByUser);
 
 
