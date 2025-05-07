@@ -14,7 +14,7 @@ const projectSchema= new mongoose.Schema({
         minlength: 10,
       },
       techStack: {
-        type: String,
+        type: [String],
         required: true,
         // validate: {
         //   validator: function (arr) {
