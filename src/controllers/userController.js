@@ -36,8 +36,10 @@ const getUserById = async (req, res) => {
 const uploadProfileImage = async(req,res)=>{
     const file = req.file;
     const userId = req.user.id;
+    const data = req.body;
+    console.log(data);
 try {
-    const updatedUser= await userServices.uploadProfileImage(userId,file);
+    const updatedUser= await userServices.uploadProfileImage(userId,file,data);
     const formatterData= formatterUserData(updatedUser);
      res.json(formatterData);
 } catch (error) {

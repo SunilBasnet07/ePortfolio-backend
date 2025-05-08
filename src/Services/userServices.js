@@ -13,9 +13,9 @@ const getUserById = async (id) => {
     return await User.findById(id);
 }
 
-const uploadProfileImage = async (userId, file) => {
+const uploadProfileImage = async (userId, file,data) => {
     const uploadedFile = await uploadImage(file);
-    return await User.findByIdAndUpdate(userId, { profileImageUrl: uploadedFile.url }, { new: true });
+    return await User.findByIdAndUpdate(userId, {...data, profileImageUrl: uploadedFile.url }, { new: true });
 
 }
 export default { createUser, getAllUsers, getUserById, uploadProfileImage }
