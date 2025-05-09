@@ -23,8 +23,8 @@ const userSchema= new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
-        trim: true,
+        unique: [true || "Number is already userd."],
+        trim:  true,
         lowercase: true,
         validate:{
             validator:(email)=>{

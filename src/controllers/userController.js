@@ -33,18 +33,25 @@ const getUserById = async (req, res) => {
      }
  };
 
-const uploadProfileImage = async(req,res)=>{
+const uploadProfileImage = async (req, res) => {
     const file = req.file;
-    const userId = req.user.id;
+    const user = req.user;
     const data = req.body;
-    console.log(data);
-try {
-    const updatedUser= await userServices.uploadProfileImage(userId,file,data);
-    const formatterData= formatterUserData(updatedUser);
-     res.json(formatterData);
-} catch (error) {
-    res.status(error.statusCode || 500).send(error.message)
-}
+
+    try {
+        // if (user.email !== data.email) {
+        //     return res.status(400).json({ message: "Email cannot be updated" });
+        // }
+      
+        const updatedUser = await userServices.uploadProfileImage(user, file, data);
+        const formattedData = formatterUserData(updatedUser);
+        
+        return res.status(200).json(formattedData);
+    } catch (error) {
+        return res.status(error.statusCode || 500).json({ 
+            message: error.message || "Internal server error" 
+        });
+    }
 }
 
 export { createUsers,getAllUsers ,getUserById,uploadProfileImage}

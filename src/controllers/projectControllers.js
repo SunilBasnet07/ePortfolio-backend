@@ -2,11 +2,12 @@ import projectService from "../Services/projectService.js";
 
 const createProject = async (req, res) => {
     const userId = req.user.id;
-    console.log(userId);
+  
     const data = req.body;
     const file = req.file;
 
     try {
+       
         if(!data.title) return res.status(428).send("title is required");
         if(!data. description) return res.status(428).send("description is required");
         if(!data.techStack) return res.status(428).send("techStack is required");

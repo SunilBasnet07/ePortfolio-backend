@@ -38,8 +38,8 @@ app.get('/', (req, res) => {
     })
 })
 
-app.use("/api/users", userRoute);
-app.use("/api/profile/upload", upload.single("image"), userRoute);
+app.use("/api/user",upload.single("image"), userRoute);
+// app.use("/api/profile/upload", upload.single("image"), userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/project", upload.single("image"), projectRoute);
 app.use("/api/contact", contactRoute);

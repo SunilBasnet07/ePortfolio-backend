@@ -8,7 +8,7 @@ const router=express.Router();
 router.post("/",createUsers);
 router.get("/",auth,roleBaseAuth("ADMIN"),getAllUsers);
 router.get("/:id",getUserById);
-router.put("/",auth,uploadProfileImage);
+router.put("/profile/upload",auth,uploadProfileImage);
 
 
 
