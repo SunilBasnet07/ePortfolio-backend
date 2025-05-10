@@ -44,5 +44,31 @@ const register = async (req, res) => {
     }
 
 }
-
-export { login, register }
+const forgotPassword= async(req,res)=>{
+    const email = req.body.email;
+ try {
+    if(!email) return res.status(428).send("Email is required");
+    const forgotPassword =await authServices.forgotPassword(email);
+    res.json("reset password link sent successfully");
+ } catch (error) {
+    res.status(500).send(error.message)
+ }
+}
+const resetPassword = async(req,res)=>{
+    const id = req.params?.id;
+    const token = req.query?.token;
+    const password = req.body?.password;
+    const confirmPassword = req.body?.confirmPassword;
+    try {
+        if(!password && !confirmPassword) return res.status(428).send("Passowrd and confirm password is required");
+        if(!password) return res.status(428).send("Password is required");
+        if(!confirmPassword) return res.status(428).send("Confirm Password is required");
+        if(password !== confirmPassword) return res.status(428).send("Password and confirm password do not match");
+        if(!PASSWORD_REGEX.test(password)) return res.status(428).send("Password must be contain uppercase lower");
+          const resetPassword = await authServices.resetPassword(id,token,password);
+          res.json(resetPassword);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+export { login, register,forgotPassword,resetPassword }
