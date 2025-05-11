@@ -56,7 +56,7 @@ const forgotPassword = async(email)=>{
   })
   await resendEmail(email,{
     subject:"Reset password link ",
-    body:`${process.env.RESET_PASSWORD_URL}/autn/reset-password/${resetPassword?.userId}?token=${resetPassword?.token}`
+    body:`${process.env.RESET_PASSWORD_URL}/auth/reset-password/${resetPassword?.userId}?token=${resetPassword?.token}`
   })
   return resetPassword;
 
